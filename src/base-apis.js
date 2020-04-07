@@ -1748,13 +1748,13 @@ MatrixBaseApis.prototype.downloadKeysForUsers = function(userIds, opts) {
     opts = opts || {};
 
     const content = {
-        device_keys: [],
+        device_keys: {},
     };
     if ('token' in opts) {
         content.token = opts.token;
     }
     userIds.forEach((u) => {
-        content.device_keys[u] = {};
+        content.device_keys[u] = [];
     });
 
     return this._http.authedRequest(undefined, "POST", "/keys/query", undefined, content);
